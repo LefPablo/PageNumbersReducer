@@ -1,20 +1,36 @@
 public class PageNumbersReducer {
     public static void main( String[] args) {
         String source = "4,5,12,16,2,7,6,15,13,11";
-        System.out.println(pageNumbersReducer(source));
+        System.out.println(pageNumbersReducer("2, 4, 6, 7, 11, 13, 14, 15, 16"));
     }
 
     public static int[] stringToArray( String str) {
         String[] source = str.split(",");
-        int[] array = new int[source.length];
 
+        int c = 0;
         for(int i = 0; i < source.length; i++) {
-            array[i] = Integer.parseInt(source[i].trim());
+            try {
+                Integer.parseInt(source[i].trim());
+                c++;
+            } catch (NumberFormatException e) {
+
+            }
+        }
+        int[] array = new int[c];
+
+        c = 0;
+        for(int i = 0; i < source.length; i++) {
+            try {
+                array[c] = Integer.parseInt(source[i].trim());
+                c++;
+            } catch (NumberFormatException e) {
+                System.out.println(e);
+            }
         }
         return array;
     }
 
-    public static int[] heapSort( int[] array) {
+    public static int[] sort(int[] array) {
         int last = array.length - 1;
         int max = 0;
         int buf = 0;
@@ -35,27 +51,43 @@ public class PageNumbersReducer {
     }
 
     public static String reducer( int[] array) {
-        int c = array[0]+1;
-        int s = array[0];
-        String result = String.valueOf(array[0]);
+        int c = 0;
+        int s = 0;
+        String result = "";
+
+        if( array.length > 0) {
+            c = array[0];
+            s = array[0];
+            result = String.valueOf(array[0]);
+        }
 
         for( int i = 1; i < array.length; i++ ) {
-            if( array[i] != c || i == (array.length-1)) {
-                if ((c - s) > 1) {
+            c++;
+            if( array[i] != c) {
+                if ((c - s) > 2) {
                     result += ("-" + array[i - 1]);
+                } else if ((c - s) == 2){
+                    result += ",";
+                    result += array[i-1];
                 }
                 result += ",";
                 result += array[i];
                 c = array[i];
                 s = array[i];
+            } else if (i == (array.length-1)) {
+                if ((c - s) > 1) {
+                    result += ("-" + array[i]);
+                } else {
+                    result += ",";
+                    result += array[i];
+                }
             }
-            c++;
         }
 
         return result;
     }
 
     public static String pageNumbersReducer( String str) {
-        return reducer(heapSort(stringToArray(str)));
+        return reducer(sort(stringToArray(str)));
     }
 }
