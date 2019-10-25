@@ -95,9 +95,9 @@ public class PageNumbersReducerTest {
 
     @Test
     public void reducer_Reduce_In_End() {
-        int[] source = {2, 4, 6, 7, 11, 13, 14, 15, 16};
+        int[] source = {2, 4, 6, 7, 11, 14, 15, 16};
 
-        String actual = "2,4,6,7,11,13-16";
+        String actual = "2,4,6,7,11,14-16";
         String expected = PageNumbersReducer.reducer(source);
 
         Assert.assertEquals(expected, actual);

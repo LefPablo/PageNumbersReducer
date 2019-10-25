@@ -1,7 +1,7 @@
 public class PageNumbersReducer {
     public static void main( String[] args) {
         String source = "4,5,12,16,2,7,6,15,13,11";
-        System.out.println(pageNumbersReducer("2, 4, 6, 7, 11, 13, 14, 15, 16"));
+        System.out.println(pageNumbersReducer("1,5,8, 3, 4,2, 12,14 ,16,15jk"));
     }
 
     public static int[] stringToArray( String str) {
@@ -82,17 +82,19 @@ public class PageNumbersReducer {
                 result += array[i];
                 c = array[i];
                 s = array[i];
+                //add page to sequence
+            } else {
+                c++;
+            }
+
             //close sequence in the end of cycle
-            } else if (i == (array.length-1)) {
+            if (i == (array.length-1)) {
                 if ((c - s) > 1) {
                     result += ("-" + array[i]);
-                } else {
+                } else if ((c - s) == 1) {
                     result += ",";
                     result += array[i];
                 }
-            //add page to sequence
-            } else {
-                c++;
             }
         }
 
