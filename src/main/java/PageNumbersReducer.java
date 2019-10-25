@@ -1,9 +1,8 @@
 public class PageNumbersReducer {
     public static void main( String[] args) {
-
     }
 
-    public static int[] toArray( String str) {
+    public static int[] stringToArray( String str) {
         int[] array = new int[] {};
         return array;
     }
@@ -18,6 +17,6 @@ public class PageNumbersReducer {
     }
 
     public static String pageNumbersReducer( String str) {
-        return reducer(heapSort(toArray(str)));
+        return reducer(heapSort(stringToArray(str)));
     }
 }
