@@ -1,6 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class PageNumbersReducerTest {
@@ -12,7 +14,7 @@ public class PageNumbersReducerTest {
         int[] actual = {4, 5, 12, 16, 2, 7, 6, 15, 13, 11};
         int[] expected = PageNumbersReducer.stringToArray(source);
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -22,7 +24,7 @@ public class PageNumbersReducerTest {
         int[] actual = {2, 4, 5, 6, 7, 11, 12, 13, 15, 16};
         int[] expected = PageNumbersReducer.heapSort(source);
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 
     @Test
