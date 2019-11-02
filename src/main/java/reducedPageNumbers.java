@@ -6,14 +6,14 @@ public class reducedPageNumbers extends javax.servlet.http.HttpServlet {
 
         PrintWriter writer = response.getWriter();
 
-        String source = request.getParameter("reducedPageNumbers");
+        String source = request.getParameter("rawPageNumbers");
         String result = "";
 
         try {
             result = PageNumbersReducer.pageNumbersReducer(source);
         } catch (Exception e) {
             writer.println(e);
-            response.setStatus(400);
+            response.setStatus(500);
             return;
         }
         try {
